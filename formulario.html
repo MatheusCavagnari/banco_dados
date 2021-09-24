@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <script src="jquery-3.5.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="./styles.css">
+
+    <title>Cadastro de Alunos</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="centralizar">
+            <h3>Crie sua conta</h3>
+            <hr>
+            <div class="row">
+                <div class="col">
+                    <input type="text" class="form-control" id="nome" placeholder="Nome">
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col">
+                    <input type=" text" class="form-control" id="email" placeholder="E-mail">
+                </div>
+
+            </div>
+
+            <br>
+            <div class="footer">
+                <button type="button" class="btn btn-secondary">Cancelar</button>
+                <button type="button" class="btn btn-success" onclick="salvar()">Confirmar</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+<script>
+    function salvar() {
+        let nome = $("#nome").val();
+        let email = $("#email").val();
+        var myHeaders = new Headers();
+        console.log(nome + ' teste ' + email)
+
+        var myInit = {
+            method: 'POST'
+
+        };
+
+        fetch('http://localhost:3000/postForm/?' + new URLSearchParams({
+            nome: nome,
+            email: email
+        }), { method: 'POST' })
+
+        /*    fetch(`http://localhost:3000/postForm?nome=${nome}&email=${email}`, myInit)
+                .then(function (data) {
+                    console.log(data)
+                })*/
+
+
+        //const myRequest = new Request()
+        /* $.ajax({
+             type: "GET",
+             url: 'localhost:3000/postForm',
+             data: { nome, email },
+             dataType: "JSON"
+         });*/
+
+    }
+
+</script>
+
+</html>
